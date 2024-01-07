@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import CalendarDay from './CalendarDay';
 /* calendar for the current month */
 /** Todo:
  * 1. show the current month
@@ -60,16 +61,15 @@ function Calendar() {
         <div>
             <button onClick={() => changeMonth(-1)}>Prev</button>
             <button onClick={() => changeMonth(1)}>Next</button>
-            <div>
-            </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
                 {daysOfWeek.map((day) => (
-                    <div key={day}>{day}</div>
+                    
+                    <div className="text-center" key={day}>{day}</div>
                 ))}
                 {calendarDays.map((day, index) => (
-                    <div key={index}>
-                        {day ? day.getDate() : ''}
-                    </div>
+
+                    <CalendarDay key={index} day={day} />
+                    
                 ))}
             </div>
         </div>
