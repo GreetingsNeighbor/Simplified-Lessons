@@ -13,21 +13,21 @@ import CalendarDay from './CalendarDay';
  * 1. show down to important dates
  */
 function Calendar() {
-    const [currentDate, setCurrentDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     // Get the first day of the current month
     const firstDayOfMonth = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
         1
     );
 
     // Get the last day of the current month
     const lastDayOfMonth = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() + 1,
         0
     );
 
@@ -43,37 +43,69 @@ function Calendar() {
 
     // Adjust the first row of the calendar if the month doesn't start on Sunday
     const startDayOfWeek = firstDayOfMonth.getDay();
-    for (let i = 0; i < startDayOfWeek; i++) {
-        calendarDays.unshift(null);
+
+    // add the days from the previous month to the calendar
+    const previousMonthDays = [];
+    const previousMonthLastDay = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        0
+    );
+    for (
+        let day = new Date(previousMonthLastDay);
+        previousMonthDays.length < startDayOfWeek;
+        day.setDate(day.getDate() - 1)
+    ) {
+        previousMonthDays.unshift(new Date(day));
     }
 
+    const nextMonthDays = [];
+    const lastDayOfCalendar = calendarDays[calendarDays.length - 1];
+
+    for (
+        let day = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1);
+        nextMonthDays.length < 7 - lastDayOfCalendar.getDay() - 1;
+        day.setDate(day.getDate() + 1)
+    ) {
+        nextMonthDays.push(new Date(day));
+    }
+
+    // Combine the days from the previous month, current month, and next month
+    const allCalendarDays = [...previousMonthDays, ...calendarDays, ...nextMonthDays];
     const changeMonth = (offset: number) => {
-        setCurrentDate(
+        setSelectedDate(
             new Date(
-                currentDate.getFullYear(),
-                currentDate.getMonth() + offset,
+                selectedDate.getFullYear(),
+                selectedDate.getMonth() + offset,
                 1
             )
         );
     };
 
+    // Render the calendar
     return (
         <div>
             <button onClick={() => changeMonth(-1)}>Prev</button>
             <button onClick={() => changeMonth(1)}>Next</button>
+            <h1>{ selectedDate.getFullYear()}</h1>
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
                 {daysOfWeek.map((day) => (
-                    
-                    <div className="text-center" key={day}>{day}</div>
+                    <div className="text-center" key={day}>
+                        {day}
+                    </div>
                 ))}
-                {calendarDays.map((day, index) => (
-
-                    <CalendarDay key={index} day={day} />
-                    
+                {allCalendarDays.map((day, index) => (
+                    <CalendarDay keya={index} day={day} />
                 ))}
-            </div>
+            h</div>
         </div>
     );
+    // for (let i = 0; i < startDayOfWeek; i++) {
+    //     calendarDays.unshift(null);
+    // }
+
+ 
 }
 
 export default Calendar;
