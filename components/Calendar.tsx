@@ -96,9 +96,10 @@ function Calendar() {
                     </div>
                 ))}
                 {allCalendarDays.map((day, index) => (
-                    <CalendarDay keya={index} day={day} />
+                    <CalendarDay num={index} day={day} isDisabled={day.getMonth()!== selectedDate.getMonth()}/>
+                    
                 ))}
-            h</div>
+            </div>
         </div>
     );
     // for (let i = 0; i < startDayOfWeek; i++) {

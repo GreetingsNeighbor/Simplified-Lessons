@@ -1,9 +1,9 @@
-const CalendarDay = ({ keya, day
+const CalendarDay = ({ num, day, isDisabled
     //, month, year, events 
-}:{keya: number, day: Date | null}
+}:{num: number, day: Date | null, isDisabled: boolean}
 ) => {
     return (
-        <div className="btn btn-outline outline-teal-800 m-2" key={keya}>
+        <div className={`btn outline-teal-800 m-2 ${isDisabled? "no-animation":"btn-outline"}` }key={num} aria-disabled={true}>
                         {day ? day.getDate() : ''}      
         </div>
     );
