@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import CalendarDay from './CalendarDay';
+import Modal from './Modal';
 /* calendar for the current month */
 /** Todo:
  * 1. show the current month
@@ -82,31 +83,43 @@ function Calendar() {
         );
     };
 
+    // click a day bring up the activities for that day in a modal
+    const [showModal, setShowModal] = useState(false);
+
+    const toggleModal = () => {
+        console.log("toggleModal");
+        setShowModal(prevShowModal => !prevShowModal);
+    }
+
+    const onShowChange = () => {
+        console.log("onShowChange");
+        setShowModal(prevShowModal => !prevShowModal);
+    }
+
+
     // Render the calendar
     return (
         <div>
+            <Modal showModal={showModal} onShowChange={onShowChange} >
+                <p>{`${selectedDate.toLocaleString('default', { month: 'short' })} ${selectedDate.getDate()}, ${selectedDate.getFullYear()} `}</p>
+            </Modal>
             <button onClick={() => changeMonth(-1)}>Prev</button>
             <button onClick={() => changeMonth(1)}>Next</button>
-            <h1>{ selectedDate.getFullYear()}</h1>
+            <h1>{selectedDate.getFullYear()}</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+            <div className='grid grid-cols-7' >
                 {daysOfWeek.map((day) => (
                     <div className="text-center" key={day}>
                         {day}
                     </div>
                 ))}
                 {allCalendarDays.map((day, index) => (
-                    <CalendarDay num={index} day={day} isDisabled={day.getMonth()!== selectedDate.getMonth()}/>
-                    
+                    <CalendarDay key={index} num={index} day={day} isDisabled={day.getMonth() !== selectedDate.getMonth()} onCalendarClick={() => {setSelectedDate(day)}} toggleModal={toggleModal} />
+
                 ))}
             </div>
         </div>
     );
-    // for (let i = 0; i < startDayOfWeek; i++) {
-    //     calendarDays.unshift(null);
-    // }
-
- 
 }
 
 export default Calendar;
