@@ -1,30 +1,37 @@
 # Plan
-## Post different examples of how to use NextJS
-## Simplify the examples so the examples are easy to understand
-- Referencethe official documentation
-[]: # (https://nextjs.org/docs/getting-started)
-- Keep the examples updated
-- List common questions and answers 
-- Demonstrate non-standard use cases
 
+# Build a calendar to track progress
+## About the calendar
+1. See month worth of progress
+2. Select a day to add, remove, or check off things I have done
+3. opens a modal for add, remove, check options (perhaps in the future do it from the calendar)
+4. select from multiple calendars for overlapping events
+5. link to blog posts
+6. connect to github, linkedin, x, google, facebook, apple calendar, fitness data
 
-
---- 
-## Work on leetcode problems
-- Look at the combination of solutions
-
-
-
----
-## Build statistical and calculus models
-- Apply knownledge of statistics and calculus to solve problems
-
----
-# Agile stories
-- As a developer, I want to be able to see the different examples of how to use NextJS
-- As an admin user, I want to be able to update content on the website with markdown when I log in
-- As a user, I want to be able to see a calendar to add, remove, or check off things I have done
-
+> ## Post different examples of how to use NextJS
+> ## Simplify the examples so the examples are easy to understand
+> - Referencethe official documentation
+> []: # (https://nextjs.org/docs/getting-started)
+> - Keep the examples updated
+> - List common questions and answers 
+> - Demonstrate non-standard use cases
+>
+> ## Work on leetcode problems
+> - Look at the combination of solutions
+> 
+> 
+> 
+>
+> ## Build statistical and calculus models
+> - Apply knownledge of statistics and calculus to solve problems
+> 
+>
+> # Agile stories
+> - As a developer, I want to be able to see the different examples of how to use NextJS
+> - As an admin user, I want to be able to update content on the website with markdown when I log in
+> - As a user, I want to be able to see a calendar to add, remove, or check off things I have done
+> 
 
 ---
 # List installation steps i took to get this project running

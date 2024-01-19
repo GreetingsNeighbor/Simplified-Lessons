@@ -102,6 +102,39 @@ function Calendar() {
         <div>
             <Modal showModal={showModal} onShowChange={onShowChange} >
                 <p>{`${selectedDate.toLocaleString('default', { month: 'short' })} ${selectedDate.getDate()}, ${selectedDate.getFullYear()} `}</p>
+                <p>Activities for the day (pi chart, charge)</p>
+                {/* I'm adding a reflection| I'm viewing my reflections/}
+                {/* adding */}
+                <form className='flex flex-col'>
+                    {/* dropdown for activity type */}
+                    <label htmlFor="activityType">Activity Type</label>
+                    <select className='dropdown dro'  name="activityType" id="activityType">
+                        <option value="meditation">Meditation</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="reading">Reading</option>
+                        <option value="writing">Writing</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label htmlFor="activity">Activity</label>
+                    <input type="text" name="activity" id="activity" />
+                    <div>
+                        <input type="checkbox" name="listened" id="listened" />
+                        <label htmlFor="listened">Listened 80% of the time</label>
+
+                    </div>
+                    <div>
+
+                    </div>
+                    <label htmlFor="reflection">Reflection</label>
+                    <textarea name="reflection" id="reflection" cols={30} rows={10}></textarea>
+                    {/* checkbox - did i listen 80% of the time */}
+                    {/* wonder if I can leverage this into a survey creator tool */}
+                </form>
+                {/* deleting */}
+
+                {/* editing*/}
+
             </Modal>
             <button onClick={() => changeMonth(-1)}>Prev</button>
             <button onClick={() => changeMonth(1)}>Next</button>
@@ -114,7 +147,7 @@ function Calendar() {
                     </div>
                 ))}
                 {allCalendarDays.map((day, index) => (
-                    <CalendarDay key={index} num={index} day={day} isDisabled={day.getMonth() !== selectedDate.getMonth()} onCalendarClick={() => {setSelectedDate(day)}} toggleModal={toggleModal} />
+                    <CalendarDay key={index} num={index} day={day} isDisabled={day.getMonth() !== selectedDate.getMonth()} onCalendarClick={() => { setSelectedDate(day) }} toggleModal={toggleModal} />
 
                 ))}
             </div>

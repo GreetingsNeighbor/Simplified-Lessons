@@ -2,12 +2,12 @@ import { promises as fs } from "fs";
 
 /**
  * 
- * @param relativePath - the path to the file relative to the root of the project; e.g. /app/data/Calendar.tsx
+ * @param filename - the filename with it's path; relative to the root of the project; e.g. /app/data/calendar.json
  * @returns 
  */
-export const readFile = async (relativePath: string) => {
+export const readFile = async (filename: string) => {
     try {
-        const data = await fs.readFile(process.cwd + relativePath, "utf-8");
+        const data = await fs.readFile(process.cwd + filename, "utf-8");
         //if you want the data in json
         //const dattJson=JSON.parse(data);
         return data;
@@ -19,13 +19,13 @@ export const readFile = async (relativePath: string) => {
 
 /**
  * 
- * @param relativePath - the path to the file relative to the root of the project; e.g. /app/data/Calendar.tsx
+ * @param filename - the filename with it's path; relative to the root of the project; e.g. /app/data/calendar.json
  * @param data - the data to be written to the file
  * @returns 
  */
-export const writeFile = async (relativePath: string, data: string) => {
+export const writeFile = async (filename: string, data: string) => {
     try {
-        await fs.writeFile(process.cwd + relativePath, data);
+        await fs.writeFile(process.cwd + filename, data);
         return true;
     } catch (error) {
         console.log(error);
