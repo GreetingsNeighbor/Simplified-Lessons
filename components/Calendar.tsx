@@ -95,6 +95,11 @@ function Calendar() {
         console.log("onShowChange");
         setShowModal(prevShowModal => !prevShowModal);
     }
+    const onDayClick = (day: Date) => {
+        console.log("onDayClick");
+        setSelectedDate(day);
+        toggleModal();
+    }
 
 
     // Render the calendar
@@ -138,8 +143,7 @@ function Calendar() {
             </Modal>
             <button onClick={() => changeMonth(-1)}>Prev</button>
             <button onClick={() => changeMonth(1)}>Next</button>
-            <h1>{selectedDate.getFullYear()}</h1>
-
+            <h1>{selectedDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long'})}</h1>
             <div className='grid grid-cols-7' >
                 {daysOfWeek.map((day) => (
                     <div className="text-center" key={day}>
@@ -147,8 +151,7 @@ function Calendar() {
                     </div>
                 ))}
                 {allCalendarDays.map((day, index) => (
-                    <CalendarDay key={index} num={index} day={day} isDisabled={day.getMonth() !== selectedDate.getMonth()} onCalendarClick={() => { setSelectedDate(day) }} toggleModal={toggleModal} />
-
+                    <CalendarDay key={index} num={index} day={day} isDisabled={day.getMonth() !== selectedDate.getMonth()} onDayClick={ ()=>onDayClick(day)} toggleModal={toggleModal} />
                 ))}
             </div>
         </div>
